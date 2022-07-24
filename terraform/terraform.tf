@@ -1,10 +1,18 @@
-provider "aws" {
+terraform {
+  backend "s3" {
+    bucket = "tf-states-ephemeral-env"
+    key = "tf-api-gateway/tf-api-gateway.tfstate"
+    region = "eu-west-1"
+  }
+
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = ">= 4.0.0"
+    }
+  }
 }
 
-// XXX terraform {
-// XXX   backend "s3" {
-// XXX     bucket = "tf-states-ephemeral-env"
-// XXX     key = "tf-states/ephemeral-env.tfstate"
-// XXX     region = "eu-west-1"
-// XXX   }
-// XXX }
+provider "aws" {
+  region = "eu-west-1"
+}
