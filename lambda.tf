@@ -38,7 +38,7 @@ resource "aws_iam_role_policy_attachment" "this" {
 data "archive_file" "this" {
   type = "zip"
   output_path = "backend.zip"
-  source_file = "../src/backend.py"
+  source_file = "backend.py"
 }
 
 resource "aws_lambda_function" "this" {
