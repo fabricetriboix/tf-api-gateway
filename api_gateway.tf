@@ -38,6 +38,7 @@ resource "aws_lambda_permission" "api_invoke_lambda" {
 }
 
 resource "aws_api_gateway_deployment" "this" {
+  depends_on = [aws_api_gateway_integration.get_widget]
   rest_api_id = aws_api_gateway_rest_api.this.id
   triggers = {
     redeployment = sha1(jsonencode(aws_api_gateway_rest_api.this.body))
